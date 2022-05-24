@@ -40,6 +40,19 @@ INSTALLED_APPS = [
     'urlShort',
 ]
 
+IP_GEOLOCATION_SETTINGS = {
+    'BACKEND': 'django_ip_geolocation.backends.IPGeolocationAPI',
+    'BACKEND_API_KEY': '',
+    'BACKEND_EXTRA_PARAMS': {},
+    'BACKEND_USERNAME': '',
+    'RESPONSE_HEADER': 'X-IP-Geolocation',
+    'ENABLE_REQUEST_HOOK': True,
+    'ENABLE_RESPONSE_HOOK': True,
+    'ENABLE_COOKIE': False,
+    'FORCE_IP_ADDR': None,
+    'USER_CONSENT_VALIDATOR': None
+}
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
@@ -49,8 +62,11 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    
 ]
 
+# MIDDLEWARE_CLASSES = ['django_ip_geolocation.middleware.IpGeolocationMiddleware',]
+GEOIP_PATH = '/path/to/your/geoip/datafiles'
 ROOT_URLCONF = 'Surl.urls'
 
 TEMPLATES = [
